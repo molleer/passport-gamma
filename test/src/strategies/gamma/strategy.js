@@ -51,30 +51,35 @@ Strategy.prototype.authenticate = function (req, options) {
 
     if (req.query && req.query.code) {
         this._exchange(req.query.code)
-            .then(res =>
-                this.userProfile(res.data.access_token, (err, user) => {
-                    if (err) {
-                        this.fail(err);
-                        return;
-                    }
-
-                    this._verify(
-                        res.data.access_token,
-                        user,
-                        (error, profile) => {
-                            if (error) {
-                                this.fail(err);
-                                return;
-                            }
-                            this.success(profile, null);
-                        }
-                    );
-                })
-            )
+            .then(res => this._loadProfile(res.data.access_token))
             .catch(err => this.error(err));
         return;
     }
 
+    this._redirectToLogin();
+};
+
+Strategy.prototype._loadProfile = function (access_token) {
+    var done = (err, profile) => {
+        if (err) {
+            this.fail(err);
+            return;
+        }
+        this.success(profile, null);
+    };
+
+    var verify = (err, user) => {
+        if (err) {
+            this.error(err);
+            return;
+        }
+        this._verify(access_token, user, done);
+    };
+
+    this.userProfile(access_token, verify);
+};
+
+Strategy.prototype._redirectToLogin = function () {
     var uri = new URL(this._options.authorizationURL);
     uri.searchParams.append("response_type", "code");
     uri.searchParams.append("client_id", this._clientID);
@@ -100,10 +105,6 @@ Strategy.prototype._exchange = function (code) {
     );
 };
 
-Strategy.prototype.authorizationParams = function (options) {
-    return {};
-};
-
 Strategy.prototype.userProfile = function (accessToken, done) {
     axios
         .get(this._profileURL, {
@@ -115,10 +116,5 @@ Strategy.prototype.userProfile = function (accessToken, done) {
         .catch(err => done(err, null));
 };
 
-Strategy.prototype.parseErrorResponse = function (body, status) {
-    var json = JSON.parse(body);
-    return new Error(json);
-};
-
-// Expose constructor.
+// Expose constructor
 module.exports = Strategy;
