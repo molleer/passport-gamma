@@ -1,0 +1,22 @@
+{
+  "name": "passport-gamma",
+  "version": "0.0.1",
+  "description": "Gamma authentication strategy for Passport.",
+  "main": "lib/index.ts",
+  "types": "lib/types.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/molleer/passport-gamma.git"
+  },
+  "keywords": [
+    "passport",
+    "auth",
+    "authentication"
+  ],
+  "author": "David Möller",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/molleer/passport-gamma/issues"
+  },
+  "homepage": "https://github.com/molleer/passport-gamma#readme"
+}
