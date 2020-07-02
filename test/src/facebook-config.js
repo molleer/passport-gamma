@@ -1,4 +1,4 @@
-const FacebookStrategy = require("passport-facebook");
+const FacebookStrategy = require("passport-facebook").Strategy;
 
 module.exports = {
     init(passport) {

@@ -5,7 +5,7 @@ if (process.env.NODE_ENV != "production") {
 
 const express = require("express");
 const passport = require("passport");
-const { init } = require("./facebook-config");
+const { init } = require("./gamma-config");
 const session = require("express-session");
 
 //Creates the express app
@@ -32,7 +32,7 @@ const checkAuth = (req, res, next) => {
         return next();
     }
 
-    res.redirect("/facebook/login");
+    res.redirect("/gamma/login");
 };
 
 //Normal endpoint without authentication
@@ -55,6 +55,19 @@ app.get("/logout", (req, res) => {
 
 //Redirects user to facebook login
 app.get("/facebook/login", passport.authenticate("facebook"));
+
+app.get("/gamma/login", passport.authenticate("gamma"));
+
+app.get(
+    "/auth/callback",
+    passport.authenticate("gamma", { failureRedirect: "/" }),
+    function (req, res) {
+        // Successful authentication, redirect home.
+
+        console.log("Successful login");
+        res.redirect("/");
+    }
+);
 
 //Authenticates user when the user is returned from
 app.get(
