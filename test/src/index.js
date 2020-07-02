@@ -47,6 +47,12 @@ app.get("/protected", checkAuth, (req, res) => {
     res.status(200).end();
 });
 
+//Logs out the user
+app.get("/logout", (req, res) => {
+    req.logOut();
+    res.redirect("/");
+});
+
 //Redirects user to facebook login
 app.get("/facebook/login", passport.authenticate("facebook"));
 
