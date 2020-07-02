@@ -1,22 +1,36 @@
 {
-  "name": "passport-gamma",
-  "version": "0.0.1",
-  "description": "Gamma authentication strategy for Passport.",
-  "main": "lib/index.ts",
-  "types": "lib/types.ts",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/molleer/passport-gamma.git"
-  },
-  "keywords": [
-    "passport",
-    "auth",
-    "authentication"
-  ],
-  "author": "David Möller",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/molleer/passport-gamma/issues"
-  },
-  "homepage": "https://github.com/molleer/passport-gamma#readme"
+    "name": "passport-gamma",
+    "version": "0.0.1",
+    "description": "Gamma authentication strategy for Passport.",
+    "main": "lib/index.ts",
+    "types": "lib/types.ts",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/molleer/passport-gamma.git"
+    },
+    "keywords": [
+        "passport",
+        "auth",
+        "authentication"
+    ],
+    "author": "David Möller",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/molleer/passport-gamma/issues"
+    },
+    "homepage": "https://github.com/molleer/passport-gamma#readme",
+    "scripts": {
+        "build": "tsc",
+        "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
+        "lint": "tslint -p tsconfig.json"
+    },
+    "devDependencies": {
+        "prettier": "^2.0.5",
+        "tslint": "^6.1.2",
+        "tslint-config-prettier": "^1.18.0",
+        "typescript": "^3.9.6"
+    },
+    "files": [
+        "lib/**/*"
+    ]
 }

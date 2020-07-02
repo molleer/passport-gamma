@@ -1,5 +1,1 @@
-exports.printMsg = () => {
-  console.log("Gamma Passport");
-};
-
-exports.Hello = () => "Hello";
+export const Hello: () => string = () => "Hello";
