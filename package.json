@@ -1,9 +1,8 @@
 {
     "name": "passport-gamma",
-    "version": "0.0.1",
+    "version": "0.0.3",
     "description": "Gamma authentication strategy for Passport.",
-    "main": "lib/index.ts",
-    "types": "lib/types.ts",
+    "main": "dist/.",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/molleer/passport-gamma.git"
@@ -21,7 +20,7 @@
     "homepage": "https://github.com/molleer/passport-gamma#readme",
     "scripts": {
         "build": "tsc",
-        "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
+        "format": "prettier --write \"lib/**/*.ts\"",
         "lint": "tslint -p tsconfig.json"
     },
     "devDependencies": {
@@ -31,6 +30,9 @@
         "typescript": "^3.9.6"
     },
     "files": [
-        "lib/**/*"
-    ]
+        "dist/**/*"
+    ],
+    "dependencies": {
+        "passport-strategy": "^1.0.0"
+    }
 }

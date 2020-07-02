@@ -2,10 +2,14 @@
     "compilerOptions": {
         "target": "es5",
         "module": "commonjs",
-        "declaration": true,
-        "outDir": "./lib",
-        "strict": true
+        "moduleResolution": "node",
+        "allowJs": true,
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "resolveJsonModule": true,
+        "declaration": false,
+        "outDir": "dist/",
+        "lib": ["es7", "dom"]
     },
-    "include": ["lib"],
-    "exclude": ["node_modules", "**/__tests__/*"]
+    "include": ["lib/**/*"]
 }
